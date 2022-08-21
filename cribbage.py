@@ -1,8 +1,7 @@
 ## This version of cribbage.py produces a cribbage board and allows uses to press buttons with scores 1-24 to advance the respecive
 ## colored pieces in certain increments.
 ## Ideas to add: Pieces are Cody and I's faces.  When someone wins the faces blow up with one laughing and one crying.
-##				 Overall game score is not lost when code is turned off.  This could be achieved by updating a txt file or csv with running score so 
-##				 that it is not lost between games.  Would also need to add a reset button to clear overall score.
+
 
 import pygame as pg, sys
 from pygame.locals import *
