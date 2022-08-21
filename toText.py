@@ -1,3 +1,6 @@
+import os.path
+
+
 path = "overall_score.txt"
 
 #initialize file
@@ -18,6 +21,8 @@ def file_append(r, b):
 	file.close()
 
 def get_last_score():
+	if not os.path.exists(path):
+		file_init()
 	file = open(path, 'r')
 	filelines = file.readlines()
 	file.close()
@@ -32,10 +37,3 @@ def get_last_score():
 	r = lst[-2]
 	b = lst[-1]
 	return r, b
-
-file_init()
-
-file_append(5,6)
-
-r, b = get_last_score()
-print(f'working red score is {r}\nworkingblue score is {b}')

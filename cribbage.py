@@ -8,6 +8,7 @@ import pygame as pg, sys
 from pygame.locals import *
 import time
 import numpy as np
+from toText import file_init, file_append, get_last_score
 
 # Global Variables
 rwhite = (220,220,220)
@@ -23,8 +24,7 @@ rhist = [0,1]
 bhist = [0,1]
 rscore = 0
 bscore = 0
-rGamesWon = 0
-bGamesWon = 0
+rGamesWon, bGamesWon = get_last_score()
 
 winner = None
 
@@ -134,6 +134,13 @@ class Button():
 				'normal':red,
 				'hover':(200,0,0),
 				'pressed':(150,0,0),
+				'textColor':rwhite
+			}
+		elif color == 'p':
+			self.fillColors = {
+				'normal':(99, 8, 110),
+				'hover':(152, 13, 168),
+				'pressed':(76, 8, 84),
 				'textColor':rwhite
 			}
 		else:
@@ -248,6 +255,13 @@ def undo_blue(arg):
 	draw_board()
 	draw_pieces()
 
+def reset_overall(arg):
+	global rGamesWon, bGamesWon
+	file_init()
+	rGamesWon, bGamesWon = get_last_score()
+	draw_board()
+	draw_pieces()
+
 buttonY = np.arange(3)*60+height-180
 buttonX = np.arange(8)*85+50
 advance = 1
@@ -266,7 +280,7 @@ for yloc in buttonY:
 
 Button(width/2-22, height-180, 65, 50, 'red', None, "Undo", undo_red)
 Button(width/2-22, height-60, 65, 50, 'blue', None, "Undo", undo_blue)
-
+Button(width/2-22, height-120, 65, 50, 'p', None, "Reset", reset_overall)
 
 
 
@@ -278,6 +292,7 @@ def win():
 	else:
 		pg.draw.circle(screen, blue, w, radius)
 		bGamesWon += 1
+	file_append(rGamesWon, bGamesWon)
 	font = pg.font.SysFont('Bernard MT Condensed', 50)
 	message = winner + " Wins!!"
 	text = font.render(message, True, rwhite)
