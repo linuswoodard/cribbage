@@ -1,28 +1,41 @@
-import pandas as pd
-import numpy as np
+path = "overall_score.txt"
 
-file = r"running_score.csv"
+#initialize file
+def file_init():
+	file = open(path, 'w')
 
-d = {'r':[0], 'b': [0]}
-df = pd.DataFrame(d)
-df.to_csv(file)
+	file.write('0\n')
+	file.write('0\n')
 
-def get_wins():
-	df = pd.read_csv(file)
-	print(df)
-	rwins = np.array(df['r'])[-1]
-	bwins = np.array(df['b'])[-1]
-	return rwins, bwins
+	file.close()
 
-def update_wins(rwins, bwins):
-	df = pd.read_csv(file)
-	df.append(pd.DataFrame([rwins, bwins], columns = ['r', 'b']))
-	df.to_csv(file)
+def file_append(r, b):
+	r = str(r)
+	b = str(b)
+	file = open(path, 'a')
+	file.write(r+'\n')
+	file.write(b+'\n')
+	file.close()
 
-rwins, bwins = get_wins()
-print(f'rwins:{rwins}, bwins:{bwins}')
+def get_last_score():
+	file = open(path, 'r')
+	filelines = file.readlines()
+	file.close()
 
-rwins = 2
-bwins = 3
+	lst = []
+	for item in filelines:
+		l = len(item)-2
+		num = item[0:1]
+		num = int(num)
+		lst.append(num)
 
-update_wins(rwins, bwins)
+	r = lst[-2]
+	b = lst[-1]
+	return r, b
+
+file_init()
+
+file_append(5,6)
+
+r, b = get_last_score()
+print(f'working red score is {r}\nworkingblue score is {b}')
