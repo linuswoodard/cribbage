@@ -1,3 +1,7 @@
 # .gitignore
 
+# ignore overall score file.  This file is created and deleted all the time and doesn't need to be updated
 overall_score.txt
+
+# ignore pycache
+__pycache__
