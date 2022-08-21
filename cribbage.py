@@ -9,7 +9,6 @@ from pygame.locals import *
 import time
 import numpy as np
 
-
 # Global Variables
 rwhite = (220,220,220)
 white = (74, 56, 38) # not white
