@@ -1,6 +1,9 @@
 # laoding good looking face pieces into a game
 # constraints:  Faces must look good at a size of pg circle of radius 10 (can be a bit bigger but no bigger than the spacing of the holes)
 
+# I have the image loading into the game but unfortunatly the quality is still shit.  I don't know how to get around this.  
+# May have to redesign the game board to be a bit bigger
+
 import pygame as pg, sys
 from pygame.locals import *
 
