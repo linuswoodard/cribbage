@@ -37,11 +37,11 @@ pg.display.update()
 # import face pictures
 # "cody.png" is 387x525
 aspect = 525/387
-image_size = (25,25*aspect)
+image_size = (30,30*aspect)
 angle = 20
 cody = pg.image.load("cody.png")
-cody = pg.transform.scale(cody, image_size)
-cody = pg.transform.rotate(cody, angle)
+cody1 = pg.transform.smoothscale(cody, image_size)
+cody2 = pg.transform.smoothrotate(cody1, 5)
 
 x_offset = 15
 y_offset = 19
@@ -53,8 +53,9 @@ for hole in holes:
 	ph = (x,y)
 	pic_holes.append(ph)
 
-screen.blit(cody, pic_holes[0])
-screen.blit(cody, pic_holes[4])
+
+screen.blit(cody1, pic_holes[0])
+screen.blit(cody2, pic_holes[-2])
 pg.display.update()
 
 print('picture', cody.get_bitsize())
